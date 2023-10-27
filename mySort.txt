@@ -1,0 +1,52 @@
+Heap Sort is an efficient comparison-based sorting algorithm that uses a data structure called a binary heap[1] to sort an array or a list of elements.
+
+The Heap Sort algorithm works as follows:
+
+1. First, it transforms the input array into a max heap - a specialized tree-based data structure which satisfies the heap property. In a max heap, for any given node i, the value of i is greater than or equal to the values of its children. This is done in the heapSort method, in the first for loop where heapify method is called.
+
+2. Once the max heap is built, the largest item (the root of the heap) is swapped with the last item in the array, effectively putting the largest item in its correct place in the array. The size of the heap is reduced by one (excluding the last element of the array from the heap). The heapify method is then called on the root node, ensuring it remains a max heap after the swap.
+
+3. These steps are repeated until the entire array is sorted.
+
+Here's the pseudocode for the algorithm:
+
+Heapify(A as array, n as int, i as int)
+{
+    max = i # Assignment
+    left = 2 * i + 1 # Multiplication and addition
+    right = 2 * i + 2 # Multiplication and addition
+    if (left < n) and (A[i] < A[left]) # Comparison
+        max = left # Assignment
+    if (right < n) and (A[max] < A[right]) # Comparison
+        max = right # Assignment
+    if (max != i) # Comparison
+        swap(A[i], A[max]) # Assignment
+        Heapify(A, n, max) # Recursive call
+}
+
+Heapsort(A as array) 
+{
+   n = length(A) # Assignment
+   for i = n/2 downto 1 # Division and loop initialization
+     Heapify(A, n ,i) # Function call
+   for i = n downto 2 # Loop initialization
+     exchange A[1] with A[i] # Assignment
+     A.heapsize = A.heapsize - 1 # Subtraction and assignment
+     Heapify(A, i, 0) # Function call
+}
+
+
+f(n) = n/2 * (1 division + 3 comparisons + 1 assignment) * log(n) + n * (3 assignments + n/2 * (1 division + 3 comparisons + 1 assignment) * log(n)).
+
+Complexity = O(log n)
+
+References:
+
+[1] GeeksforGeeks. "Heap Sort – Data Structures and Algorithms Tutorials". GeeksforGeeks. Accessed: Oct 27th, 2023. [Online]. Available: https://www.geeksforgeeks.org/heap-sort/
+
+[2] Programiz. "Sorting Algorithm". Programiz. Accessed: Oct 27th, 2023. [Online]. Available: https://www.programiz.com/dsa/sorting-algorithm
+
+[3] OpenGenus. "Time & Space Complexity of Heap Sort". OpenGenus. Accessed: Oct 27th, 2023. [Online]. Available: https://iq.opengenus.org/time-complexity-of-heap-sort/
+
+
+
