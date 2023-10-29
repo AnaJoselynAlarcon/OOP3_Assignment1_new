@@ -43,7 +43,7 @@ public class Utility {
         do {
             swapped = false;
             for (int i = 1; i < n; i++) {
-                if (comparator.compare(arr[i - 1], arr[i]) < 0) { // Changed to < 0
+                if (comparator.compare(arr[i - 1], arr[i]) < 0) {
                     // Swap arr[i-1] and arr[i]
                     Shape temp = arr[i - 1];
                     arr[i - 1] = arr[i];
@@ -79,11 +79,11 @@ public class Utility {
         int left = 2 * i + 1;
         int right = 2 * i + 2;
 
-        if (left < n && comparator.compare(arr[left], arr[largest]) < 0) { // Changed to < 0
+        if (left < n && comparator.compare(arr[left], arr[largest]) < 0) {
             largest = left;
         }
 
-        if (right < n && comparator.compare(arr[right], arr[largest]) < 0) { // Changed to < 0
+        if (right < n && comparator.compare(arr[right], arr[largest]) < 0) {
             largest = right;
         }
 
@@ -122,7 +122,7 @@ public class Utility {
         int i = 0, j = 0, k = 0;
 
         while (i < leftLength && j < rightLength) {
-            if (comparator.compare(leftHalf[i], rightHalf[j]) <= 0) {
+            if (comparator.compare(leftHalf[i], rightHalf[j]) >= 0) {
                 shapes[k++] = leftHalf[i++];
             } else {
                 shapes[k++] = rightHalf[j++];
@@ -148,7 +148,7 @@ public class Utility {
 
             // looping to compare the next value with the smallest index
             for (int otherIndex = index + 1; otherIndex < inputArrayLength; otherIndex++) {
-                if (comparator.compare(shapes[otherIndex], smallestShape) < 0) {
+                if (comparator.compare(shapes[otherIndex], smallestShape) > 0) {
                     // if the value beside the smallest is even smaller, then we'll remember that as
                     // the smallest now
                     smallestShape = shapes[otherIndex];

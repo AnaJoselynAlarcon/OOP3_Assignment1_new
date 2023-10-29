@@ -1,3 +1,5 @@
+Heap Sort
+
 Heap Sort is an efficient comparison-based sorting algorithm that uses a data structure called a binary heap[1] to sort an array or a list of elements.
 
 The Heap Sort algorithm works as follows:
@@ -8,37 +10,60 @@ The Heap Sort algorithm works as follows:
 
 3. These steps are repeated until the entire array is sorted.
 
-Here's the pseudocode for the algorithm:
 
-Heapify(A as array, n as int, i as int)
+Pseudocode for the algorithm:
+
+HeapSort(array)
 {
-    max = i # Assignment
-    left = 2 * i + 1 # Multiplication and addition
-    right = 2 * i + 2 # Multiplication and addition
-    if (left < n) and (A[i] < A[left]) # Comparison
-        max = left # Assignment
-    if (right < n) and (A[max] < A[right]) # Comparison
-        max = right # Assignment
-    if (max != i) # Comparison
-        swap(A[i], A[max]) # Assignment
-        Heapify(A, n, max) # Recursive call
+    size = length of the array
+
+    // Build a max heap from the input array
+    for (i from size/2 down to 0)
+    {
+        Heapify(array, size, i)
+    }
+
+    // One by one, extract elements from the heap and place them at the end of the array
+    for (i from size - 1 down to 0)
+    {
+        swap(array[0], array[i]) // Move the largest element to the end of the array
+        Heapify(array, i, 0) // Restore the heap property for the remaining elements
+    }
 }
 
-Heapsort(A as array) 
+Heapify(array, size, index)
 {
-   n = length(A) # Assignment
-   for i = n/2 downto 1 # Division and loop initialization
-     Heapify(A, n ,i) # Function call
-   for i = n downto 2 # Loop initialization
-     exchange A[1] with A[i] # Assignment
-     A.heapsize = A.heapsize - 1 # Subtraction and assignment
-     Heapify(A, i, 0) # Function call
+    largest = index
+    leftChild = 2 * index + 1
+    rightChild = 2 * index + 2
+
+    // Check if the left child is within the heap and if it's larger than the current largest element
+    if (leftChild < size and array[leftChild] > array[largest])
+        largest = leftChild
+
+    // Check if the right child is within the heap and if it's larger than the current largest element
+    if (rightChild < size and array[rightChild] > array[largest])
+        largest = rightChild
+
+    // If the largest element is not the current element, swap them and recursively heapify the affected subtree
+    if (largest is not equal to index)
+    {
+        swap(array[index], array[largest])
+        Heapify(array, size, largest) // Recursively call Heapify on the affected subtree
+    }
 }
 
 
-f(n) = n/2 * (1 division + 3 comparisons + 1 assignment) * log(n) + n * (3 assignments + n/2 * (1 division + 3 comparisons + 1 assignment) * log(n)).
+Time Complexity
 
-Complexity = O(log n)
+Building the Heap: The initial step of Heap Sort involves building a max heap from the input array. This step takes O(n) time complexity because you need to heapify each element, which takes O(log n) time, and there are 'n' elements in the array. So, the building of the heap contributes O(n * log n) to the overall time complexity.
+
+Heapify Operation: After the heap is constructed, the largest element (the root) is swapped with the last element of the heap and then the heapify operation is performed on the root to maintain the heap property. The heapify operation also takes O(log n) time. Since there are 'n' elements, and each element may require O(log n) time for heapification, this step adds another O(n * log n) to the time complexity.
+
+Total Time Complexity: When you add the time complexities of building the heap and the heapify operations, you get a total time complexity of O(n * log n).
+
+In conclusion, Heap Sort has a time complexity of O(n log n) due to the two main operations it performs - building the heap and performing heapify operations. This complexity is quite efficient, making Heap Sort a good choice for sorting large datasets and is generally faster than other quadratic time complexity sorting algorithms like Bubble Sort or Insertion Sort.
+
 
 References:
 
